@@ -1,0 +1,78 @@
+.root {
+    -fx-background-color: #202020;
+}
+
+.result-label {
+    /* Text */
+    -fx-font-size: 30px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+    /*-fx-min-width: 200px; ? */
+    -fx-alignment: baseline-right;
+
+    /* Border */
+    -fx-border-color: #202020;
+    -fx-background-color: #202020;
+    -fx-padding: 10px 5px; /* top,bottom and left,right */
+    -fx-pref-width: 295px;
+}
+
+/* TODO */
+.error-label {
+    -fx-font-size: 20px;
+}
+
+/* Default Button */
+.button {
+    -fx-font-size: 20px;
+    -fx-min-width: 70px;
+    -fx-min-height: 50px;
+
+    -fx-background-color: #505050;
+    -fx-text-fill: white;
+}
+
+.button:hover {
+    -fx-background-color: #303030;
+}
+
+/* Number Buttons */
+.number-button {
+    -fx-font-size: 20px;
+    -fx-min-width: 70px;
+    -fx-min-height: 50px;
+
+    -fx-background-color: #505050;
+    -fx-text-fill: white;
+}
+
+.number-button:hover {
+    -fx-background-color: #303030;
+}
+
+.equals-button {
+    -fx-font-size: 20px;
+    -fx-font-family: sans-serif;
+    -fx-min-width: 70px;
+    -fx-min-height: 50px;
+    -fx-background-color: green;
+}
+
+.equals-button:hover {
+    -fx-background-color: lightgreen;
+}
+
+/* Operand Buttons & Clear Buttons */
+.action-button {
+    -fx-font-size: 20px;
+    -fx-font-family: sans-serif;
+    -fx-min-width: 70px;
+    -fx-min-height: 50px;
+
+    -fx-background-color: #303030;
+    -fx-text-fill: white;
+}
+
+.action-button:hover {
+    -fx-background-color: #505050;
+}
