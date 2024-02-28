@@ -26,9 +26,6 @@ The Java Calculator App is a simple calculator application built using Java and 
 To run the calculator application locally, follow these steps:
 
 1. Clone the repository to your local machine.
-```bash
-git clone https://github.com/your_username/java-calculator-app.git
-```
 2. Open the project in your preferred Java IDE.
 3. Run the `Main.java` file to launch the application.
 
