@@ -7,7 +7,6 @@
     -fx-font-size: 30px;
     -fx-font-weight: bold;
     -fx-text-fill: white;
-    /*-fx-min-width: 200px; ? */
     -fx-alignment: baseline-right;
 
     /* Border */
@@ -17,28 +16,10 @@
     -fx-pref-width: 295px;
 }
 
-/* TODO */
-.error-label {
-    -fx-font-size: 20px;
-}
-
-/* Default Button */
-.button {
-    -fx-font-size: 20px;
-    -fx-min-width: 70px;
-    -fx-min-height: 50px;
-
-    -fx-background-color: #505050;
-    -fx-text-fill: white;
-}
-
-.button:hover {
-    -fx-background-color: #303030;
-}
-
 /* Number Buttons */
 .number-button {
     -fx-font-size: 20px;
+    -fx-font-family: fantasy;
     -fx-min-width: 70px;
     -fx-min-height: 50px;
 
@@ -52,10 +33,12 @@
 
 .equals-button {
     -fx-font-size: 20px;
-    -fx-font-family: sans-serif;
+    -fx-font-family: fantasy;
+    -fx-font-weight: bold;
     -fx-min-width: 70px;
     -fx-min-height: 50px;
     -fx-background-color: green;
+    -fx-text-fill: white;
 }
 
 .equals-button:hover {
@@ -65,7 +48,7 @@
 /* Operand Buttons & Clear Buttons */
 .action-button {
     -fx-font-size: 20px;
-    -fx-font-family: sans-serif;
+    -fx-font-family: fantasy;
     -fx-min-width: 70px;
     -fx-min-height: 50px;
 
