@@ -4,7 +4,7 @@
 
 The Java Calculator App is a simple calculator application built using Java and JavaFX.
 
-![Screenshot](https://i.imgur.com/gwVD77f.png)
+![Screenshot](https://i.imgur.com/T74xiFe.png)
 
 ## Features
 
@@ -32,10 +32,7 @@ git clone https://github.com/your_username/java-calculator-app.git
 2. Open the project in your preferred Java IDE.
 3. Run the `Main.java` file to launch the application.
 
-Alternatively, if you have Java installed on your system, you can run the provided `simpleCalculatorV1.jar` file located in the `out` folder:
-```bash
-java -jar simpleCalculatorV1.jar
-```
+Alternatively, if you have Java installed on your system, you can run the provided `simpleCalculatorV1.jar` file located in the `out` directory.
 
 ## Dependencies
 This project uses JavaFX for the user interface and Maven for dependency management. Make sure you have JavaFX installed and configured in your development environment. If you're using Maven, the necessary JavaFX dependencies are already included in the `pom.xml` file.
