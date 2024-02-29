@@ -11,7 +11,7 @@ import java.util.Objects;
 
 public class Main extends Application {
     private static final int DEFAULT_WINDOW_WIDTH = 305;
-    private static final int DEFAULT_WINDOW_HEIGHT = 410;
+    private static final int DEFAULT_WINDOW_HEIGHT = 435;
 
     @Override
     public void start(Stage primaryStage) {

@@ -13,28 +13,28 @@ public class CalculatorLogic {
 
     private final StringBuilder stringBuilderOut;
     private final StringBuilder stringBuilderInput;
+    private final StringBuilder stringBuilderExp;
     private final Stack<Double> numStack;
     private final Stack<Character> operandStack;
     private final Stack<Double> resultStack;
     private double resultValue;
     private final Label resultLabel;
+    private final Label expressionLabel;
 
     private boolean isDeleteButtonPressed = false;
     private boolean isAnsButtonPressed = false;
     private boolean isSignButtonPressed = false;
 
-    //TODO-LIST
-    // add commas after 3 numbers: 11,111 or 111,111 and so on
-    // add calculation steps on top of resultLabel
-    // add new feature like unit converter
-
-    public CalculatorLogic(Label resultLabel) {
+    // Constructor
+    public CalculatorLogic(Label resultLabel, Label expressionLabel) {
         stringBuilderOut = new StringBuilder();
         stringBuilderInput = new StringBuilder();
+        stringBuilderExp = new StringBuilder();
         numStack = new Stack<>();
         operandStack = new Stack<>();
         resultStack = new Stack<>();
         this.resultLabel = resultLabel;
+        this.expressionLabel = expressionLabel;
 
         setInitialOutput();
     }
@@ -42,13 +42,29 @@ public class CalculatorLogic {
     // Initially set Output to 0
     private void setInitialOutput() {
         stringBuilderOut.append(ZERO);
-        resultLabel.setText(stringBuilderOut.toString());
+        displayResultLabel();
     }
 
     /** HELPER METHODS */
     // Display result label
     private void displayResultLabel() {
         resultLabel.setText(stringBuilderOut.toString());
+    }
+
+    // Display expression Label
+    private void displayExpressionLabel() {
+        expressionLabel.setText(stringBuilderExp.toString());
+    }
+
+    // Delete expression string & reset expression label
+    private void resetExpressionLabel() {
+        stringBuilderExp.delete(0, stringBuilderExp.length());
+        displayExpressionLabel();
+    }
+
+    // Display error message
+    private void displayErrorMessage(String message) {
+        expressionLabel.setText(message);
     }
 
     // Check if stringBuilderOut is zero
@@ -71,11 +87,6 @@ public class CalculatorLogic {
         isSignButtonPressed = !isSignButtonPressed;
     }
 
-    // Display error message
-    private void displayErrorMessage(String message) {
-        resultLabel.setText(message);
-    }
-
     // Clear output until operand is reached
     private void clearOutputUntilOperand() {
         while (!isOperand(stringBuilderOut.charAt(stringBuilderOut.length()-1))) {
@@ -86,6 +97,9 @@ public class CalculatorLogic {
 
     /** NUMBER INPUT HANDLING */
     public void handleNumberButtonClick(char number) {
+        // Reset expression label after pressing a number button again
+        resetExpressionLabel();
+
         // Check if deleting past operand
         if (isDeletingPastOperand()) {
             handleNumInputAfterDel(number);
@@ -93,7 +107,7 @@ public class CalculatorLogic {
             handleNumInput(number);
         }
 
-        // Handle cases when a numberButton is pressed again
+        // Handle cases when a number button is pressed again
         if (isOutputZero()) {
             stringBuilderOut.replace(0,1, String.valueOf(number));
         } else if (isLastCharZeroAfterOperand()) {
@@ -105,7 +119,6 @@ public class CalculatorLogic {
             // No number after ANS without operand in between
             stringBuilderOut.append(number);
         }
-
         displayResultLabel();
     }
 
@@ -232,6 +245,11 @@ public class CalculatorLogic {
 
     /** OPERAND INPUT HANDLING */
     public void handleOperandButtonClick(char operand) {
+        // Reset expression label after result
+        if (stringBuilderOut.toString().equals(RESULT)) {
+            resetExpressionLabel();
+        }
+
         // If there's no input yet
         if (stringBuilderInput.isEmpty()) {
             // Handle cases when input is empty
@@ -445,8 +463,12 @@ public class CalculatorLogic {
         // Print result
         resultLabel.setText(dfFormat(resultValue));
 
-        // Reset output
-        stringBuilderOut.replace(0, stringBuilderOut.length(), "result");
+        // Print expression
+        stringBuilderExp.replace(0, stringBuilderExp.length(), stringBuilderOut + "=");
+        displayExpressionLabel();
+
+        // Set output string to result
+        stringBuilderOut.replace(0, stringBuilderOut.length(), RESULT);
     }
 
     /** CLEAR AND DELETE BUTTON HANDLING */
@@ -456,15 +478,15 @@ public class CalculatorLogic {
         numStack.clear();
         operandStack.clear();
 
-        // Delete whole input string
+        // Delete input string
         stringBuilderInput.delete(0, stringBuilderInput.length());
 
-        // Delete whole output string
-        stringBuilderOut.delete(0, stringBuilderOut.length());
-
         // Reset output to zero and display result label
-        stringBuilderOut.append(ZERO);
+        stringBuilderOut.replace(0, stringBuilderOut.length(), ZERO);
         displayResultLabel();
+
+        // Reset expression label
+        resetExpressionLabel();
 
         // reset isSignButtonPressed
         isSignButtonPressed = false;
@@ -493,6 +515,8 @@ public class CalculatorLogic {
             stringBuilderInput.delete(0, stringBuilderInput.length());
         }
 
+        // Reset expression label
+        resetExpressionLabel();
         // Display result label
         displayResultLabel();
 
@@ -543,6 +567,8 @@ public class CalculatorLogic {
             }
         }
 
+        // Reset expression label
+        resetExpressionLabel();
         // Display result label
         displayResultLabel();
 

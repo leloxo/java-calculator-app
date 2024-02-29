@@ -12,8 +12,16 @@
     /* Border */
     -fx-border-color: #202020;
     -fx-background-color: #202020;
-    -fx-padding: 10px 5px; /* top,bottom and left,right */
+    -fx-padding: 0 5px 10px 5px; /* top, right, bottom, left */
+
     -fx-pref-width: 295px;
+}
+
+.expression-label {
+    -fx-font-size: 18px;
+    -fx-text-fill: white;
+    -fx-alignment: baseline-right;
+    -fx-padding: 3px 5px 0 5px; /* top, right, bottom, left */
 }
 
 /* Number Buttons */

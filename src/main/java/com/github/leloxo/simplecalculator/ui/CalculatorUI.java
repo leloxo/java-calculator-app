@@ -14,12 +14,13 @@ import javafx.scene.layout.GridPane;
 public class CalculatorUI {
     private final GridPane grid;
     private Label resultLabel;
+    private Label expressionLabel;
     private final CalculatorLogic calculatorLogic;
 
     public CalculatorUI() {
         grid = createGridPane();
         initializeUI();
-        calculatorLogic = new CalculatorLogic(resultLabel);
+        calculatorLogic = new CalculatorLogic(resultLabel, expressionLabel);
     }
 
     public GridPane getGrid() { return grid; }
@@ -36,50 +37,59 @@ public class CalculatorUI {
 
     private void initializeUI() {
         setResultLabel();
+        setExpressionLabel();
         addAllButtons();
     }
 
     private void setResultLabel() {
         resultLabel = new Label();
         resultLabel.getStyleClass().add("result-label");
-        GridPane.setConstraints(resultLabel, 0, 0, 4, 1); // occupies 4 columns and 1 row
+        GridPane.setConstraints(resultLabel, 0, 1, 4, 1); // occupies 4 columns and 1 row
         GridPane.setHalignment(resultLabel, HPos.RIGHT);
         grid.getChildren().add(resultLabel);
     }
 
+    private void setExpressionLabel() {
+        expressionLabel = new Label();
+        expressionLabel.getStyleClass().add("expression-label");
+        GridPane.setConstraints(expressionLabel, 0, 0, 4, 1);
+        GridPane.setHalignment(expressionLabel, HPos.RIGHT);
+        grid.getChildren().add(expressionLabel);
+    }
+
     private void addAllButtons() {
         // Operand Buttons
-        setButton(createOperandButton("+"), 3, 5, e -> calculatorLogic.handleOperandButtonClick('+'));
-        setButton(createOperandButton("-"), 3, 4, e -> calculatorLogic.handleOperandButtonClick('-'));
-        setButton(createOperandButton("×"), 3, 3, e -> calculatorLogic.handleOperandButtonClick('*'));
-        setButton(createOperandButton("÷"), 3, 2, e -> calculatorLogic.handleOperandButtonClick('/'));
-        setButton(createOperandButton("mod"), 0, 2, e -> calculatorLogic.handleOperandButtonClick('%'));
-        setButton(createOperandButton("x²"), 1, 2, e -> calculatorLogic.handleSquareButtonClick());
-        setButton(createOperandButton("√x"), 2, 2, e -> calculatorLogic.handleRootButtonClick());
-        setButton(createOperandButton("Ans"), 0, 1, e -> calculatorLogic.handleAnsButtonClick());
+        setButton(createOperandButton("+"), 3, 6, e -> calculatorLogic.handleOperandButtonClick('+'));
+        setButton(createOperandButton("-"), 3, 5, e -> calculatorLogic.handleOperandButtonClick('-'));
+        setButton(createOperandButton("×"), 3, 4, e -> calculatorLogic.handleOperandButtonClick('*'));
+        setButton(createOperandButton("÷"), 3, 3, e -> calculatorLogic.handleOperandButtonClick('/'));
+        setButton(createOperandButton("mod"), 0, 3, e -> calculatorLogic.handleOperandButtonClick('%'));
+        setButton(createOperandButton("x²"), 1, 3, e -> calculatorLogic.handleSquareButtonClick());
+        setButton(createOperandButton("√x"), 2, 3, e -> calculatorLogic.handleRootButtonClick());
+        setButton(createOperandButton("Ans"), 0, 2, e -> calculatorLogic.handleAnsButtonClick());
 
         // Number Buttons
-        setButton(createNumberButton("1"), 0, 5, e -> calculatorLogic.handleNumberButtonClick('1'));
-        setButton(createNumberButton("2"), 1, 5, e -> calculatorLogic.handleNumberButtonClick('2'));
-        setButton(createNumberButton("3"), 2, 5, e -> calculatorLogic.handleNumberButtonClick('3'));
-        setButton(createNumberButton("4"), 0, 4, e -> calculatorLogic.handleNumberButtonClick('4'));
-        setButton(createNumberButton("5"), 1, 4, e -> calculatorLogic.handleNumberButtonClick('5'));
-        setButton(createNumberButton("6"), 2, 4, e -> calculatorLogic.handleNumberButtonClick('6'));
-        setButton(createNumberButton("7"), 0, 3, e -> calculatorLogic.handleNumberButtonClick('7'));
-        setButton(createNumberButton("8"), 1, 3, e -> calculatorLogic.handleNumberButtonClick('8'));
-        setButton(createNumberButton("9"), 2, 3, e -> calculatorLogic.handleNumberButtonClick('9'));
-        setButton(createNumberButton("0"), 1, 6, e -> calculatorLogic.handleNumberButtonClick('0'));
-        setButton(createNumberButton("."), 2, 6, e -> calculatorLogic.handleDecimalButtonClick());
-        setButton(createNumberButton("±"), 0, 6, e -> {
+        setButton(createNumberButton("1"), 0, 6, e -> calculatorLogic.handleNumberButtonClick('1'));
+        setButton(createNumberButton("2"), 1, 6, e -> calculatorLogic.handleNumberButtonClick('2'));
+        setButton(createNumberButton("3"), 2, 6, e -> calculatorLogic.handleNumberButtonClick('3'));
+        setButton(createNumberButton("4"), 0, 5, e -> calculatorLogic.handleNumberButtonClick('4'));
+        setButton(createNumberButton("5"), 1, 5, e -> calculatorLogic.handleNumberButtonClick('5'));
+        setButton(createNumberButton("6"), 2, 5, e -> calculatorLogic.handleNumberButtonClick('6'));
+        setButton(createNumberButton("7"), 0, 4, e -> calculatorLogic.handleNumberButtonClick('7'));
+        setButton(createNumberButton("8"), 1, 4, e -> calculatorLogic.handleNumberButtonClick('8'));
+        setButton(createNumberButton("9"), 2, 4, e -> calculatorLogic.handleNumberButtonClick('9'));
+        setButton(createNumberButton("0"), 1, 7, e -> calculatorLogic.handleNumberButtonClick('0'));
+        setButton(createNumberButton("."), 2, 7, e -> calculatorLogic.handleDecimalButtonClick());
+        setButton(createNumberButton("±"), 0, 7, e -> {
             calculatorLogic.toggleSignButtonPressed();
             calculatorLogic.handleSignButtonClick();
         });
 
         // Other Buttons
-        setButton(createEqualsButton(), 3, 6, e -> calculatorLogic.handleEqualsButtonClick());
-        setButton(createClearButton("C"), 1, 1, e -> calculatorLogic.handleClearButtonClick());
-        setButton(createClearButton("CE"), 2, 1, e -> calculatorLogic.handleClearRecentButtonClick());
-        setButton(createClearButton("⌫"), 3, 1, e -> calculatorLogic.handleDeleteButtonClick());
+        setButton(createEqualsButton(), 3, 7, e -> calculatorLogic.handleEqualsButtonClick());
+        setButton(createClearButton("C"), 1, 2, e -> calculatorLogic.handleClearButtonClick());
+        setButton(createClearButton("CE"), 2, 2, e -> calculatorLogic.handleClearRecentButtonClick());
+        setButton(createClearButton("⌫"), 3, 2, e -> calculatorLogic.handleDeleteButtonClick());
     }
 
     private void setButton(Button button, int column, int row, EventHandler<ActionEvent> eventHandler) {
