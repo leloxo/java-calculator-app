@@ -4,7 +4,7 @@
 
 The Java Calculator App is a simple calculator application built using Java and JavaFX.
 
-![Screenshot](https://i.imgur.com/T74xiFe.png)
+![Screenshot](https://i.imgur.com/J2zt9MG.png)
 
 ## Features
 
